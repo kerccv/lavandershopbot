@@ -1,12 +1,5 @@
-from aiogram.types import (
-    ReplyKeyboardMarkup, 
-    KeyboardButton, 
-    InlineKeyboardMarkup, 
-    InlineKeyboardButton,
-    WebAppInfo
-)
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 
-# Главное меню
 def main_menu():
     return ReplyKeyboardMarkup(
         keyboard=[
@@ -16,7 +9,6 @@ def main_menu():
         resize_keyboard=True
     )
 
-# Админ-панель
 def admin_panel():
     return ReplyKeyboardMarkup(
         keyboard=[
@@ -25,10 +17,4 @@ def admin_panel():
             [KeyboardButton(text="🚪 Выйти")]
         ],
         resize_keyboard=True
-    )
-
-# Кнопка "Назад" в админке
-def back_to_admin():
-    return InlineKeyboardMarkup(
-        inline_keyboard=[[InlineKeyboardButton(text="⬅️ Назад", callback_data="admin_back")]]
     )
