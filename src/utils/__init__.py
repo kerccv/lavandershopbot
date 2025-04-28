@@ -1,5 +1,4 @@
-from .db import Session, Product, add_product
+from .db import Base, Session, Product, add_product, init_db
 from .parser import parse_csv
-from .web_app import generate_web_app_html
 
-__all__ = ["Session", "Product", "add_product", "parse_csv", "generate_web_app_html"]
+__all__ = ["Base", "Session", "Product", "add_product", "init_db", "parse_csv"]
