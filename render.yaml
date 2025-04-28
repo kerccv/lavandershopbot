@@ -1,19 +1,12 @@
 services:
   - type: web
-    name: lavandershopbot
+    name: lavander-shop-bot
     env: python
-    buildCommand: |
-      pip install --upgrade pip
-      pip install -r requirements.txt
-      python -c "import psycopg2; print('Psycopg2 installed:', psycopg2.__version__)"
-    startCommand: python src/main.py
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python webhook.py
     envVars:
       - key: BOT_TOKEN
-        fromGitHub: false
         value: 7313861292:AAEThP2eynTXlRxljyas9Gma_FPvGVVZhT8
-      - key: ADMIN_SECRET
-        fromGitHub: false
-        value: 1293forever
       - key: DATABASE_URL
-        fromGitHub: false
         value: postgresql://admin:z08MOdcHDvaIkTxVqX7HiagLj3sQJk12@dpg-d07r2cp5pdvs73ae65r0-a/shop_sov1
