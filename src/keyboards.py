@@ -18,8 +18,3 @@ def admin_panel():
         ],
         resize_keyboard=True
     )
-
-def back_to_admin():
-    return InlineKeyboardMarkup(
-        inline_keyboard=[[InlineKeyboardButton(text="⬅️ Назад", callback_data="admin_back")]]
-    )

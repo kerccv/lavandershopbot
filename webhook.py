@@ -1,7 +1,7 @@
-from src.routers import dp  # Теперь импорт будет работать
-from src.config import BOT_TOKEN
-from aiogram import Bot
+from aiogram import Bot, Dispatcher
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler
+from src.config import BOT_TOKEN
+from src.routers import dp
 from aiohttp import web
 
 bot = Bot(token=BOT_TOKEN)
