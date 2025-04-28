@@ -1,5 +1,0 @@
-BOT_TOKEN = "7313861292:AAEThP2eynTXlRxljyas9Gma_FPvGVVZhT8"
-ADMIN_PASSWORD = "1293forever"
-UPLOAD_FOLDER = "database/"
-PRODUCTS_FILE = "database/products.json"
-WEBAPP_URL = "https://lavandershopbot.onrender.com/static/index.html"
