@@ -1,12 +1,26 @@
-from sqlalchemy.ext.declarative import declarative_base
+import os
 from sqlalchemy import create_engine, Column, Integer, String, Text
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from config import DATABASE_URL
 
-# Сначала создаем Base
+# Убедимся, что используется правильный URL
+print(f"Подключаемся к БД по URL: {DATABASE_URL[:30]}...")  # Логируем для отладки
+
+# Для Render PostgreSQL добавляем параметры
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    connect_args={
+        "keepalives": 1,
+        "keepalives_idle": 30,
+        "keepalives_interval": 10,
+        "keepalives_count": 5
+    }
+)
+
 Base = declarative_base()
 
-# Затем определяем модели
 class Product(Base):
     __tablename__ = "products"
     id = Column(Integer, primary_key=True)
@@ -14,19 +28,13 @@ class Product(Base):
     price = Column(Integer, nullable=False)
     description = Column(Text)
     photo_url = Column(String(255))
+    is_active = Column(Boolean, default=True)  # Для управления видимостью
 
-# И только потом создаем engine и сессии
-engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 
 def init_db():
-    """Создает таблицы при первом запуске"""
-    Base.metadata.create_all(engine)
-
-def add_product(name: str, price: int, description: str, photo_url: str):
-    """Добавляет товар в БД"""
-    session = Session()
-    product = Product(name=name, price=price, description=description, photo_url=photo_url)
-    session.add(product)
-    session.commit()
-    session.close()
+    try:
+        Base.metadata.create_all(engine)
+        print("Таблицы успешно созданы")
+    except Exception as e:
+        print(f"Ошибка создания таблиц: {e}")
