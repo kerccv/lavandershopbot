@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram.filters import Command
 from src.config import ADMIN_SECRET
-from keyboards import admin_panel, main_menu, back_to_admin
+from src.keyboards import admin_panel, main_menu, back_to_admin
 from utils.parser import parse_csv
 from utils.db import Session, Product
 
