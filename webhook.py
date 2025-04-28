@@ -1,7 +1,7 @@
 from aiogram import Bot, Dispatcher
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler
-from src.config import BOT_TOKEN, WEBHOOK_URL, WEB_SERVER_HOST, WEB_SERVER_PORT, WEBHOOK_PATH
 from src.routers import dp
+from src.config import BOT_TOKEN, WEBHOOK_URL, WEB_SERVER_HOST, WEB_SERVER_PORT, WEBHOOK_PATH
 from aiohttp import web
 import logging
 

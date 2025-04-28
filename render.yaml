@@ -1,9 +1,10 @@
 services:
   - type: web
-    name: lavander-shop-bot
+    name: lavandershopbot
     env: python
-    plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      pip install -r requirements.txt
+      python -c "from src.utils.db import init_db; init_db()"
     startCommand: python webhook.py
     envVars:
       - key: BOT_TOKEN
