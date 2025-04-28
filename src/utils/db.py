@@ -6,7 +6,9 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Инициализация
+# Инициализация подключения
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 class Product(Base):
@@ -19,13 +21,18 @@ class Product(Base):
     is_active = Column(Boolean, default=True)
 
 def init_db():
-    """Синхронная инициализация БД"""
+    """Инициализация таблиц в БД"""
     try:
-        engine = create_engine(DATABASE_URL)
-        logger.info(f"Подключение к БД: {DATABASE_URL[:30]}...")
         Base.metadata.create_all(engine)
-        logger.info("Таблицы успешно созданы")
-        return True
+        logger.info("Таблицы БД успешно созданы")
     except Exception as e:
-        logger.error(f"Ошибка БД: {e}")
-        return False
+        logger.error(f"Ошибка создания таблиц: {e}")
+        raise
+
+def get_db():
+    """Генератор сессий для зависимостей"""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
