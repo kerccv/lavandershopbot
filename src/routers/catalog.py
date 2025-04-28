@@ -1,8 +1,10 @@
-from aiogram import Router
+from aiogram import Router, F
+from aiogram.types import Message
 
-catalog_router = Router()  # Создаем экземпляр роутера
+# Создаем экземпляр роутера
+catalog_router = Router(name="catalog_router")
 
-# Добавляем обработчики для каталога
+# Обработчик кнопки "Каталог"
 @catalog_router.message(F.text == "🛍️ Каталог")
 async def show_catalog(message: Message):
     await message.answer("Открываю каталог...")
