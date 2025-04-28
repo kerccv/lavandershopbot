@@ -1,5 +1,5 @@
-BOT_TOKEN = "ТВОЙ_ТОКЕН_СЮДА"
-ADMIN_PASSWORD = "123456"  # код для входа в админ-панель
+BOT_TOKEN = "7313861292:AAEThP2eynTXlRxljyas9Gma_FPvGVVZhT8"
+ADMIN_PASSWORD = "1293forever"
 UPLOAD_FOLDER = "database/"
 PRODUCTS_FILE = "database/products.json"
-WEBAPP_URL = "https://ТВОЙ_ДОМЕН/render/webapp/index.html"
+WEBAPP_URL = "https://lavandershopbot.onrender.com/static/index.html"
